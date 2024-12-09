@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="images/IPT Logo.png">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <link rel="stylesheet" href="CSS/header.css">
+  <link rel="stylesheet" href="CSS/projects.css">
+  <title>Projects</title>
+</head>
+  <body>
+    
+    <div class="wrapper">
+      <header> 
+        <div class="header-container"> <!--Holds the header components-->
+          <div class="img-name-container">
+            <img src="images/IPT Logo.png" alt="Image Logo">
+            <a class="name-beside-logo" href="home-page.html">Benji, Your Data Analyst</a>
+          </div>
+          <div class="navbar-container">
+            <nav class="header-navigation">
+                <a class="nav-link" href="project-page.html">Projects</a>
+                <a class="nav-link" href="contact-page.html">Get In Touch</a>
+                <a class="nav-link" href="about-page.html">About</a>
+            </nav>
+          </div>
+        </div>
+      </header>
+
+      <main>
+        <div id="carouselExampleCaptions" class="carousel slide">
+          <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+          </div>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="images/rock-paper-scissors.png" class="d-block w-100" alt="...">
+              <div class="carousel-caption d-none d-md-block">
+                <h5>
+                  <a href="#rock-paper-scissors-project">Rock Paper Scissors Game</a>
+                </h5>
+                <p>A simple rock paper scissors game powered by Javascripts</p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img src="images/arithmetic-calculator.png" class="d-block w-100" alt="...">
+              <div class="carousel-caption d-none d-md-block">
+                <h5>
+                  <a href="#arithmetic-calculator-project">Arithmetic Calculator</a>
+                </h5>
+                <p>A simple arithmetic calculator with extra functionalities</p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img src="images/todo-app.png" class="d-block w-100" alt="...">
+              <div class="carousel-caption d-none d-md-block">
+                  <h5>
+                    <a href="#todo-app-project">Todo App</a>
+                  </h5>
+                <p>List your tasks using Todo App. An array practice using Javascripts</p>
+              </div>
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+
+        <!-- ROCK PAPER SCISSORS PROJECT DISPLAY -->
+        <div class="rock-paper-scissors-project-container" id="rock-paper-scissors-project">
+          <div class="project-title">
+            <h3>Rock Paper Scissors</h3>
+          </div>
+
+          <div class="content">
+            <div class="project-description">
+              <p>
+                I created this simple Rock-Paper-Scissors game during my days learning web development and focusing on Javascripts. Although my choice of field is at the backend development but in this simple project I also enjoy the front end.
+              </p>
+              <p>
+                I learned a lot by practicing with this simple project. I learned to used different JS methods such as Local Storage, Event Listeners, Set Interval and different JS logics.
+              </p>
+            </div>
+  
+            <div class="project-container">
+              <p class="warning"></p>
+              <!-- Player move buttons -->
+              <span class="hand-container">
+                <button id="hand-btn" class="hand-btn" value="Rock">
+                  <i>&#9994</i>
+                </button>
+          
+                <button id="hand-btn" class="hand-btn" value="Paper">
+                  <i>&#128400</i>
+                </button>
+          
+                <button id="hand-btn" class="hand-btn" value="Scissors">
+                  <i>&#9996</i>
+                </button>
+              </span>
+          
+              <div class="description-container">
+                <p class="result-par"></p>
+                <p class="moves"></p>
+          
+                <span class="score">
+                  Wins: 0, Losses: 0, Ties: 0
+                </span>
+              </div>
+          
+              <div class="control-btn">
+                  <!-- Reset button -->
+                  <button type="button" class="btn btn-secondary reset-btn" value="reset">Reset Score</button>
+          
+                  <!-- Auto play button -->
+                  <button type="button" class="btn btn-primary auto-play-btn">Auto Play</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- ARITHMETIC CALCULATOR PROJECT DISPLAY -->
+        <div class="arithmetic-calculator-project-container" id="arithmetic-calculator-project">
+          <div class="project-title">
+            <h3>Arithmetic Calculator</h3>
+          </div>
+
+          <div class="content">
+            <div class="project-container">
+              <div class="prev-calculations">
+                <span id="prev-values"></span>
+              </div>
+        
+              <div class="result-container">
+                <p id="result">0</p>
+              </div>
+        
+              <div class="buttons">
+                <div class="btn-column">
+                  <button class="button" value="1">1</button>
+                  <button class="button" value="2">2</button>
+                  <button class="button" value="3">3</button>
+                  <div class="operator-btn">
+                    <button class="button" value="+">+</button>
+                  </div>
+                </div>
+        
+                <div class="btn-column">
+                  <button class="button" value="4">4</button>
+                  <button class="button" value="5">5</button>
+                  <button class="button" value="6">6</button>
+                  <div class="operator-btn">
+                    <button class="button" value="-">-</button>
+                  </div>
+                </div>
+        
+                <div class="btn-column">
+                  <button class="button" value="7">7</button>
+                  <button class="button" value="8">8</button>
+                  <button class="button" value="9">9</button>
+                  <div class="operator-btn">
+                    <button class="button" value="*">x</button>
+                  </div>
+                </div>
+        
+                <div class="btn-column">
+                  <button class="button" value="0">0</button>
+                  <button class="button" value=".">.</button>
+                  <button class="button" value="=">=</button>
+                  <div class="operator-btn">
+                    <button class="button" value="/">÷</button> 
+                  </div>
+                </div>
+        
+                <div class="update-btn-column">
+                  <button class="button" value="c">Clear</button>
+                  <button class="button" value="e">Erase</button>
+                  <button class="button parenthesis" value="(">(</button>
+                  <button class="button parenthesis" value=")">)</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="project-description">
+              <p>
+                Simple arithmetic calculator is one of my significant projects during this Javascript beginner days because with this project I handle many buttons with different functionalities which means I handled different events.
+              </p>
+              <p>
+                Not only Javascript event listeners that boost my knowledge with this project, but also the JS methods handling diffent functionalities for user friendly result. Soon I will make this a scientific calculator for more complex js backend.
+              </p>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- TODO APP PROJECT DISPLAY -->
+        <div class="todo-app-project-container" id="todo-app-project">
+          <div class="project-title">
+            <h3>Todo App</h3>
+          </div>
+
+          <div class="content">
+            <div class="project-description">
+              <p>
+                This simple Todo App which get user's todo and due date and display at the bottom helps me to play with design logic using JS. This is crucial for learning how to handle elements that does not yet appended using JS.
+              </p>
+              <p>
+                Besides appending elements I also handles arrays with objects inside in it to store user's todo list and due. I handled different array methods such as push to add elements and splice to delete elements.
+              </p>
+            </div>
+
+            <div class="project-container">
+              <div class="title-container">
+                Todo List
+              </div>
+
+              <div class="input-and-btn-container">
+                <div class="input-and-btn">
+                  <input type="text" class="input-todo-name" placeholder="Todo Name">
+                  <input type="date" class="todo-add-due-date">
+                  <button id="add-todo-btn">Add</button>
+                </div>
+              </div>
+         
+              <div class="list-and-btn-container">
+                <!-- ADD JS CLASS LIST HERE -->
+                <div class="list">
+                  <div class="date-and-name-list">
+                    <span class="todo-name-list"></span>
+                    <span class="todo-due-date-list"></span>
+                  </div>
+                  <!-- <button class="delete-list-btn">Delete</button> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+    </div>
+
+
+    <script src="JS/rock-paper-scissors.js"></script>
+    <script src="JS/arithmetic-calculator.js"></script>
+    <script src="JS/todo-app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
