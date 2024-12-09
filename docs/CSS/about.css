@@ -1,0 +1,135 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #DFB665;
+}
+
+.large-text {
+  padding: 0 110px;
+  font-size: 4.5rem;
+  width: 70%;
+  font-weight: 900;
+  height: 50vh;
+
+  position: absolute;
+  top: 7rem;
+  left: 5rem;
+}
+
+.section-1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 30px 110px;
+}
+
+.section-1 > .field-1 {
+  width: 90%;
+  display: flex;
+  justify-content: end;
+}
+
+.section-1 > .field-1 > img {
+  height: auto;
+  width: 50rem;
+}
+
+.section-1 > .field-2 {
+  display: flex;
+  flex-direction: row;
+  padding: 0 110px;
+  margin-top: 3rem;
+}
+
+.social-media-list {
+  list-style: none;
+  padding: 0%;
+  width: 100%;
+  height: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  position: relative;
+  top: 5rem;
+}
+
+.social-media-list li {
+  font-weight: 600;
+  border-bottom: 1px solid black;
+  width: 90%;
+  cursor: pointer;
+  
+}
+
+.social-media-list li > a {
+  color: black;
+}
+
+.section-1 > .field-2 > .paragraph-list-1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+
+  height: 100%;
+  margin-right: 2rem;
+}
+
+.section-1 > .field-2 > .paragraph-list-1 span  {
+  font-weight: 900;
+  font-size: 3rem;
+  font-family: serif;
+}
+
+.section-1 > .field-2 > .paragraph-list-1 p, .paragraph-list-2 p  {
+  font-weight: 600;
+}
+
+.quote {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+}
+
+.section-2 > .header {
+  padding: 2rem;
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+  font-size: 3rem;
+  font-weight: 800;
+}
+
+.section-2 > .gallery {
+  columns: 300px;
+  padding: 0 220px;
+}
+
+.section-2 > .gallery img {
+  width: 100%;
+  margin-bottom: 1em;
+  cursor: pointer;
+}
+
+.section-2 > .paragraph {
+  padding: 80px 220px;
+  text-align: center;
+}
+
+/* full size when click an image */
+.fullsize {
+  z-index: 999;
+  cursor: zoom-out;
+  display: block;
+  width: 500px;
+  max-width: 500px;
+  height: auto;
+  max-height: 560px;
+  position: fixed;
+  left: 30%;
+  top: 7.5%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
