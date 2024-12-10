@@ -111,6 +111,11 @@
   margin-bottom: 5px;
 }
 
+.limit-to-2-lines {
+  width: fit-content;
+  height: fit-content;
+}
+
 .product-rating-container {
   display: flex;
   align-items: center;
