@@ -26,10 +26,9 @@ document.querySelectorAll('.js-add-to-cart-button')
   .forEach((button) => {
     button.addEventListener('click', () => {
       const productID = button.dataset.productId; // html data attribute id
-      const productName = button.dataset.productName; // html data attribute name
       
       // store quantity to the cart array
-      productQuantity(productID, productName);
+      productQuantity(productID);
   
       // Calculate total cart quantity
       let cartQuantity = cart.reduce((total, item) => total + item.quantity, 0);
