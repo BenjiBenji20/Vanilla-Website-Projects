@@ -1,4 +1,4 @@
-export const cart = [
+export let cart = [
   {
     id: 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6',
     quantity: 2
@@ -39,4 +39,19 @@ export function cartMessage(productID) {
   setTimeout(() =>{
     addToCartMessage.style.visibility = 'hidden';
   }, 1000);
+}
+
+// removing element to the array
+export function removeCartItem(productID) {
+  const newCartArr = [];
+
+  cart.forEach((cartItems) => {
+    // find item that does not match with the delete product id
+    if(cartItems.id !== productID) {
+      newCartArr.push(cartItems);
+    }
+  });
+
+  // pass new array elements to the cart array
+  cart = newCartArr;
 }
