@@ -37,7 +37,5 @@ document.querySelectorAll('.js-add-to-cart-button')
 
       // display cart message
       cartMessage(productID);
-
-      console.log(cart);
     });
   });

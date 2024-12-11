@@ -1,4 +1,4 @@
-export let cart = [
+export let cart = JSON.parse(localStorage.getItem('cart')) || [
   {
     id: 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6',
     quantity: 2
@@ -8,6 +8,11 @@ export let cart = [
     quantity: 1
   }
 ];
+
+// saving every cart updates to the local storage
+export function saveToStorage() {
+  localStorage.setItem('cart', JSON.stringify(cart));
+}
 
 export function productQuantity(productID) {
   const selector = document.querySelector(`.js-quantity-selector-${productID}`); 
@@ -28,10 +33,12 @@ export function productQuantity(productID) {
       quantity: selectedQuantity, 
     });
   }
+
+  saveToStorage();
 }
 
+// make the added to cart message visible
 export function cartMessage(productID) {
-  // make the added to cart message visible
   const addToCartMessage = document.querySelector(`.js-added-to-cart-message-${productID}`);
   addToCartMessage.style.visibility = 'visible';
 
@@ -54,4 +61,6 @@ export function removeCartItem(productID) {
 
   // pass new array elements to the cart array
   cart = newCartArr;
+
+  saveToStorage();
 }
