@@ -658,3 +658,64 @@ export const products = [
     ]
   }
 ];
+
+export let productsHTML = '';
+// Loop through the array
+products.forEach((product) => {
+  // accumalte 
+  productsHTML += `
+    <div class="js-product-container product-container" data-product-id="${product.id}" data-testid="product-container-${product.id}">
+      <div class="product-image-container">
+        <img class="js-product-image product-image" src="${product.image}">
+      </div>
+
+      <div class="product-name limit-to-2-lines">
+        ${product.name}
+      </div>
+
+      <div class="product-rating-container">
+        <img class="product-rating-stars" src="images/ratings/rating-${product.rating.stars * 10}.png">
+        <div class="product-rating-count link-primary">
+          ${product.rating.count}
+        </div>
+      </div>
+
+      <div class="product-price">
+        $${(product.priceCents / 100).toFixed(2)}
+      </div>
+
+      <div class="product-quantity-container">
+        <select class="js-quantity-selector-${product.id}" data-testid="quantity-selector">
+          <option selected="" value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+        </select>
+      </div>
+
+      
+
+      <div class="product-spacer"></div>
+
+      <div class="js-added-to-cart-message-${product.id} added-to-cart-message" data-testid="added-to-cart-message">
+        <img src="images/icons/checkmark.png">
+         Added
+      </div>
+
+      <button class="js-add-to-cart-button
+        add-to-cart-button button-primary" 
+        data-product-name="${product.name}"
+        data-product-id="${product.id}">
+        Add to Cart
+      </button>
+    </div>
+  `;
+});
+
+
