@@ -1,3 +1,7 @@
+// import modules
+import { cart } from "../data/cart.js";
+import { products } from "../data/products.js";
+
 // Save the data
 // cosnst products = []; products variable was loaded or passed from another js file from data/products.js 
 
