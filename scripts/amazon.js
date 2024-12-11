@@ -45,9 +45,9 @@ products.forEach((product) => {
 
       <div class="product-spacer"></div>
 
-      <div class="js-added-to-cart-message added-to-cart-message" data-testid="added-to-cart-message">
+      <div class="js-added-to-cart-message-${product.id} added-to-cart-message" data-testid="added-to-cart-message">
         <img src="images/icons/checkmark.png">
-        Added
+         Added
       </div>
 
       <button class="js-add-to-cart-button
@@ -91,7 +91,7 @@ document.querySelectorAll('.js-add-to-cart-button')
 
       // Check if the product is already in the cart
       let productInCart = cart.find((item) => item.id === productID);
-      
+
       // push the product obj to the cart array
       // cart array was loaded from other js file data/cart.js
       if(productInCart) {
@@ -112,5 +112,14 @@ document.querySelectorAll('.js-add-to-cart-button')
       document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
 
       console.log(cart);
+
+      // make the added to cart message visible
+      const addToCartMessage = document.querySelector(`.js-added-to-cart-message-${productID}`);
+      addToCartMessage.style.visibility = 'visible';
+
+      // set time out to hide the message
+      setTimeout(() =>{
+        addToCartMessage.style.visibility = 'hidden';
+      }, 1000);
     });
   });
