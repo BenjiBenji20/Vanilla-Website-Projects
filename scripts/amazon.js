@@ -27,7 +27,7 @@ products.forEach((product) => {
       </div>
 
       <div class="product-quantity-container">
-        <select class="js-quantity-selector" data-testid="quantity-selector">
+        <select class="js-quantity-selector-${product.id}" data-testid="quantity-selector">
           <option selected="" value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
@@ -65,41 +65,49 @@ const productsContainer = document.querySelector('.js-products-grid');
 
 productsContainer.innerHTML = productsHTML;
 
+let quantity = 0;
+
+// catch selector element using its id
+products.forEach((product) => {
+  const selector = document.querySelector(`.js-quantity-selector-${product.id}`);
+  
+  selector.addEventListener('change', () => { 
+    const productInCart = cart.find((item) => item.id === product.id);
+
+    if (productInCart) {
+      // Update the quantity for the product in the cart
+      productInCart.quantity = Number(selector.value);
+    }
+  });
+});
+
 document.querySelectorAll('.js-add-to-cart-button')
   .forEach((button) => {
     button.addEventListener('click', () => {
       const productID = button.dataset.productId; // html data attribute id
       const productName = button.dataset.productName; // html data attribute name
+      const selector = document.querySelector(`.js-quantity-selector-${productID}`); 
+      const selectedQuantity = Number(selector.value);
 
+      // Check if the product is already in the cart
+      let productInCart = cart.find((item) => item.id === productID);
+      
       // push the product obj to the cart array
       // cart array was loaded from other js file data/cart.js
-      let itemIsMatch;
-      cart.forEach((item) => { 
-        // checks if the item already exist in the cart
-        if(item.id === productID) { 
-          itemIsMatch = item
-        }
-      });
-
-      // if the item already exist in the cart, then increment the quantity by 1
-      if(itemIsMatch) {
-        itemIsMatch.quantity += 1;
-      }
+      if(productInCart) {
+        productInCart.quantity += selectedQuantity;
+      } 
       else {
-        cart.push(
-          {
-            productName,
-            id: productID,
-            quantity: 1
-          }
-        );
+        // Add the new product to the cart
+        cart.push({
+          productName,
+          id: productID,
+          quantity: selectedQuantity, 
+        });
       }
-
-      // change the value of cart quantity icon to the total value of cart quantity
-      let cartQuantity = 0;
-      cart.forEach((item) => {
-        cartQuantity += item.quantity;
-      });
+  
+      // Calculate total cart quantity
+      let cartQuantity = cart.reduce((total, item) => total + item.quantity, 0);
 
       document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
 
