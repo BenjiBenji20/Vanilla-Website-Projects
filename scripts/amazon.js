@@ -69,8 +69,6 @@ const productsContainer = document.querySelector('.js-products-grid');
 
 productsContainer.innerHTML = productsHTML;
 
-let quantity = 0;
-
 // catch selector element using its id
 products.forEach((product) => {
   const selector = document.querySelector(`.js-quantity-selector-${product.id}`);
@@ -85,45 +83,56 @@ products.forEach((product) => {
   });
 });
 
+function productQuantity(productID, productName) {
+  const selector = document.querySelector(`.js-quantity-selector-${productID}`); 
+  const selectedQuantity = Number(selector.value);
+
+  // Check if the product is already in the cart
+  let productInCart = cart.find((item) => item.id === productID);
+
+  // push the product obj to the cart array
+  // cart array was loaded from other js file data/cart.js
+  if(productInCart) {
+    productInCart.quantity += selectedQuantity;
+  } 
+  else {
+    // Add the new product to the cart
+    cart.push({
+      productName,
+      id: productID,
+      quantity: selectedQuantity, 
+    });
+  }
+}
+
+function cartMessage(productID) {
+  // make the added to cart message visible
+  const addToCartMessage = document.querySelector(`.js-added-to-cart-message-${productID}`);
+  addToCartMessage.style.visibility = 'visible';
+
+  // set time out to hide the message
+  setTimeout(() =>{
+    addToCartMessage.style.visibility = 'hidden';
+  }, 1000);
+}
+
 document.querySelectorAll('.js-add-to-cart-button')
   .forEach((button) => {
     button.addEventListener('click', () => {
       const productID = button.dataset.productId; // html data attribute id
       const productName = button.dataset.productName; // html data attribute name
-      const selector = document.querySelector(`.js-quantity-selector-${productID}`); 
-      const selectedQuantity = Number(selector.value);
-
-      // Check if the product is already in the cart
-      let productInCart = cart.find((item) => item.id === productID);
-
-      // push the product obj to the cart array
-      // cart array was loaded from other js file data/cart.js
-      if(productInCart) {
-        productInCart.quantity += selectedQuantity;
-      } 
-      else {
-        // Add the new product to the cart
-        cart.push({
-          productName,
-          id: productID,
-          quantity: selectedQuantity, 
-        });
-      }
+      
+      // store quantity to the cart array
+      productQuantity(productID, productName);
   
       // Calculate total cart quantity
       let cartQuantity = cart.reduce((total, item) => total + item.quantity, 0);
 
       document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
 
+      // display cart message
+      cartMessage(productID);
+
       console.log(cart);
-
-      // make the added to cart message visible
-      const addToCartMessage = document.querySelector(`.js-added-to-cart-message-${productID}`);
-      addToCartMessage.style.visibility = 'visible';
-
-      // set time out to hide the message
-      setTimeout(() =>{
-        addToCartMessage.style.visibility = 'hidden';
-      }, 1000);
     });
   });
