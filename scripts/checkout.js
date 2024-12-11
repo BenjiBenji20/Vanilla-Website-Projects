@@ -1,7 +1,7 @@
 import { cart, removeCartItem } from '../data/cart.js';
 import { products } from '../data/products.js';
 
-let orderSummary;
+let orderSummary = '';
 cart.forEach((cartItems) => {
 
   // loop to products array to find matching products by id
@@ -14,7 +14,8 @@ cart.forEach((cartItems) => {
 
   orderSummary += 
     `
-      <div class="cart-item-container">
+      <div class="cart-item-container 
+      js-cart-item-container-${matchingProduct.id}">
         <div class="delivery-date">
           Delivery date: Wednesday, June 15
         </div>
@@ -99,5 +100,7 @@ document.querySelectorAll('.js-delete-link')
 
     del.addEventListener('click', () => {
       removeCartItem(productID);
+
+      document.querySelector(`.js-cart-item-container-${productID}`).remove();
     });
   });
