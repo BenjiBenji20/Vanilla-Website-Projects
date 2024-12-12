@@ -61,6 +61,73 @@ export function removeCartItem(productID) {
 
   // pass new array elements to the cart array
   cart = newCartArr;
-
   saveToStorage();
+}
+
+
+// calculates cart quantity
+export function calculateCartQuantity() {
+  let checkoutQuantity = 0;
+  cart.forEach((cartItem) => {
+    checkoutQuantity += cartItem.quantity;
+  });
+
+  return checkoutQuantity;
+}
+
+
+// Update quantity of an item
+export function updateQuantity(productID) {
+  const quantityLabel = document.querySelector(`.quantity-label-${productID}`);
+  const updateLink = document.querySelector(`.js-update-quantity-link-${productID}`);
+
+  const currentQuantity = Number(quantityLabel.textContent); // Current quantity
+  
+  // change into input field
+  quantityLabel.innerHTML = 
+    `<input type="number" class="input-update-cart-quantity" value="${currentQuantity}">`;
+  
+  const inputField = document.querySelector(`.input-update-cart-quantity`);
+  
+  // change the update link label
+  updateLink.innerHTML = 'Save';
+
+  // Add an event listener to save the new quantity when "Save" is clicked
+  updateLink.addEventListener('click', () => saveNewCartQuantity(productID, inputField));
+
+} 
+
+
+// Save new quantity
+function saveNewCartQuantity(productID, inputField) {
+  const quantityLabel = document.querySelector(`.quantity-label-${productID}`);
+  const updateLink = document.querySelector(`.js-update-quantity-link-${productID}`);
+
+  const newQuantity = Number(inputField.value);
+
+  // Get the new quantity from the input field
+  inputField.textContent = newQuantity;
+
+  // Revert input field back to a label
+  quantityLabel.textContent = newQuantity;
+
+  updateLink.textContent = 'Update';
+
+  // save updated quantity to the array
+  cart.forEach((cartItem) => {
+    if(cartItem.id === productID) {
+      cartItem.quantity = newQuantity;
+    }
+  })
+
+  console.log('updated cart: ', cart);
+
+  // remove click event listener
+  updateLink.replaceWith(updateLink.cloneNode(true));
+
+  // Save the updated cart to localStorage
+  saveToStorage();
+
+  // update quantity on header
+  document.querySelector('.js-checkout-quantity').innerHTML = calculateCartQuantity() > 0 ? `${calculateCartQuantity()} items` : '';
 }

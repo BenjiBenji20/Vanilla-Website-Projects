@@ -1,5 +1,5 @@
 // import variables by modules
-import { cart, productQuantity, cartMessage } from "../data/cart.js";
+import { cart, productQuantity, cartMessage, calculateCartQuantity } from "../data/cart.js";
 import { products, productsHTML } from "../data/products.js";
 
 
@@ -21,6 +21,14 @@ products.forEach((product) => {
   });
 });
 
+// Calculate total cart quantity
+function changeCartQuantity() {
+
+  document.querySelector('.js-cart-quantity')
+    .innerHTML = calculateCartQuantity() > 0 ? calculateCartQuantity() : '';
+}
+
+changeCartQuantity(); // function call to change initially the cart quantity
 
 document.querySelectorAll('.js-add-to-cart-button')
   .forEach((button) => {
@@ -31,9 +39,7 @@ document.querySelectorAll('.js-add-to-cart-button')
       productQuantity(productID);
   
       // Calculate total cart quantity
-      let cartQuantity = cart.reduce((total, item) => total + item.quantity, 0);
-
-      document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
+      changeCartQuantity();
 
       // display cart message
       cartMessage(productID);

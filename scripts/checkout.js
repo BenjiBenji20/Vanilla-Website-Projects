@@ -1,4 +1,4 @@
-import { cart, removeCartItem } from '../data/cart.js';
+import { cart, removeCartItem, calculateCartQuantity, updateQuantity } from '../data/cart.js';
 import { products } from '../data/products.js';
 
 let orderSummary = '';
@@ -33,12 +33,13 @@ cart.forEach((cartItems) => {
             </div>
             <div class="product-quantity">
               <span>
-                Quantity: <span class="quantity-label">${cartItems.quantity}</span>
+                Quantity: <span class="quantity-label-${matchingProduct.id}">${cartItems.quantity}</span>
               </span>
-              <span class="update-quantity-link link-primary">
+              <span class="js-update-quantity-link-${matchingProduct.id} link-primary update-button">
                 Update
               </span>
-              <span class="delete-quantity-link link-primary js-delete-link" data-product-id="${matchingProduct.id}">
+              <span class="delete-quantity-link link-primary js-delete-link" 
+                data-product-id="${matchingProduct.id}">
                 Delete
               </span>
             </div>
@@ -93,6 +94,13 @@ cart.forEach((cartItems) => {
 
 document.querySelector('.order-summary').innerHTML = orderSummary;
 
+// change checkout quantity on header
+export function changeCheckoutQuantity() {
+  document.querySelector('.js-checkout-quantity').innerHTML = calculateCartQuantity() > 0 ? `${calculateCartQuantity()} items` : '';
+}
+
+changeCheckoutQuantity();
+
 // deleting array ellementt
 document.querySelectorAll('.js-delete-link')
   .forEach((del) => {
@@ -101,6 +109,22 @@ document.querySelectorAll('.js-delete-link')
     del.addEventListener('click', () => {
       removeCartItem(productID);
 
+      // changing checkout quantity on header
+      changeCheckoutQuantity();
+
       document.querySelector(`.js-cart-item-container-${productID}`).remove();
     });
   });
+
+
+
+// Listen for clicks on "link-primary" elements to update the product ID
+document.querySelectorAll('.link-primary')
+  .forEach((cartItem) => {
+    cartItem.addEventListener('click', () => {
+      const productID = cartItem.dataset.productId;
+
+      updateQuantity(productID);
+    });
+});
+
