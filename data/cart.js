@@ -131,3 +131,19 @@ function saveNewCartQuantity(productID, inputField) {
   // update quantity on header
   document.querySelector('.js-checkout-quantity').innerHTML = calculateCartQuantity() > 0 ? `${calculateCartQuantity()} items` : '';
 }
+
+
+// updating delivery option id
+// export function updateDeliveryOption(productId, options) {
+//   let matchingItem;
+
+//   cart.forEach((cartItems) => {
+//     if(productId === cartItems.id) {
+//       matchingItem = cartItems;
+//     }
+//   });
+
+//   matchingItem.deliveryOptionID = options;
+
+//   saveToStorage();
+// }

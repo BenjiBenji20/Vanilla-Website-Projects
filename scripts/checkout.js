@@ -1,4 +1,6 @@
-import { cart, removeCartItem, calculateCartQuantity, updateQuantity } from '../data/cart.js';
+import { cart, removeCartItem, 
+  calculateCartQuantity, updateQuantity, 
+  updateDeliveryOption } from '../data/cart.js';
 import { products } from '../data/products.js';
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js'; // library to set delivery schedule on current date
 import { deliveryOptions } from '../data/deliveryOptions.js';
@@ -35,7 +37,8 @@ cart.forEach((cartItems) => {
     `
       <div class="cart-item-container 
       js-cart-item-container-${matchingProduct.id}">
-        <div class="delivery-date">
+        <div class="delivery-date js-delivery-date-${matchingProduct.id}" 
+          data-product-id="${matchingProduct.id}">
           Delivery date: ${deliveryDate}
         </div>
 
@@ -95,7 +98,9 @@ function deliveryOptionRenderer(matchingProduct, cartItems) {
     const ischecked = option.id === cartItems.deliveryOptionID;
 
     htmlElements += ` 
-      <div class="delivery-option">
+      <div class="delivery-option js-delivery-option"
+        data-product-id="${matchingProduct.id}"
+        data-option-id="${option.id}">
         <input type="radio" class="delivery-option-input"
           ${ischecked ? 'checked' : ''}
           name="delivery-option-${matchingProduct.id}">
@@ -154,3 +159,18 @@ document.querySelectorAll('.link-primary')
     });
 });
 
+
+
+// // Update delivery date on header for each item container
+// document.querySelectorAll('.js-delivery-option')
+//   .forEach((option) => {
+//     option.addEventListener('click', () => {
+//       const {productId, options} = option.dataset;
+//       console.log(productId)
+      
+//       updateDeliveryOption(productId, options);
+
+//       // document.querySelector(`s-delivery-date-${productID}`)
+//       //   .innerHTML 
+//     });
+//   });
