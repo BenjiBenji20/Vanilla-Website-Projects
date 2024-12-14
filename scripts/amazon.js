@@ -29,7 +29,7 @@ function changeCartQuantity() {
 }
 
 changeCartQuantity(); // function call to change initially the cart quantity
-
+ 
 document.querySelectorAll('.js-add-to-cart-button')
   .forEach((button) => {
     button.addEventListener('click', () => {

@@ -94,7 +94,6 @@ export function updateQuantity(productID) {
 
   // Add an event listener to save the new quantity when "Save" is clicked
   updateLink.addEventListener('click', () => saveNewCartQuantity(productID, inputField));
-
 } 
 
 
@@ -119,8 +118,6 @@ function saveNewCartQuantity(productID, inputField) {
       cartItem.quantity = newQuantity;
     }
   })
-
-  console.log('updated cart: ', cart);
 
   // remove click event listener
   updateLink.replaceWith(updateLink.cloneNode(true));
