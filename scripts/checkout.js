@@ -1,6 +1,10 @@
 import { cart, removeCartItem, calculateCartQuantity, updateQuantity } from '../data/cart.js';
 import { products } from '../data/products.js';
 
+var now = Date.now();
+
+const deliveryDate = dayjs().add(7, 'days').format('dddd, MMMM DD');
+
 let orderSummary = '';
 cart.forEach((cartItems) => {
 
@@ -17,7 +21,7 @@ cart.forEach((cartItems) => {
       <div class="cart-item-container 
       js-cart-item-container-${matchingProduct.id}">
         <div class="delivery-date">
-          Delivery date: Wednesday, June 15
+          Delivery date: ${deliveryDate}
         </div>
 
         <div class="cart-item-details-grid">
