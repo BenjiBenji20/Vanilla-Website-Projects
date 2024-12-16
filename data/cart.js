@@ -69,13 +69,19 @@ export function removeCartItem(productID) {
 
 
 // calculates cart quantity
-export function calculateCartQuantity() {
+function calculateCartQuantity() {
   let checkoutQuantity = 0;
   cart.forEach((cartItem) => {
     checkoutQuantity += cartItem.quantity;
   });
 
   return checkoutQuantity;
+}
+
+
+// change checkout quantity on header
+export function changeCheckoutQuantity() {
+  document.querySelector('.js-checkout-quantity').innerHTML = calculateCartQuantity() > 0 ? `${calculateCartQuantity()} items` : '';
 }
 
 
