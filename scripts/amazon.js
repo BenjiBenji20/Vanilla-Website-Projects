@@ -1,5 +1,5 @@
 // import variables by modules
-import { cart, productQuantity, cartMessage, calculateCartQuantity } from "../data/cart.js";
+import { cart, addToCart, cartMessage, calculateCartQuantity } from "../data/cart.js";
 import { products, productsHTML } from "../data/products.js";
 
 
@@ -36,7 +36,7 @@ document.querySelectorAll('.js-add-to-cart-button')
       const productID = button.dataset.productId; // html data attribute id
       
       // store quantity to the cart array
-      productQuantity(productID);
+      addToCart(productID);
   
       // Calculate total cart quantity
       changeCartQuantity();

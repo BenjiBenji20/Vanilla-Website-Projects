@@ -16,7 +16,9 @@ export function saveToStorage() {
   localStorage.setItem('cart', JSON.stringify(cart));
 }
 
-export function productQuantity(productID) {
+
+// add items to the cart
+export function addToCart(productID) {
   const selector = document.querySelector(`.js-quantity-selector-${productID}`); 
   const selectedQuantity = Number(selector.value);
 
