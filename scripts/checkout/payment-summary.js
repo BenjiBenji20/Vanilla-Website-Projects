@@ -5,8 +5,12 @@ import { getDeliveryOption } from "../../data/deliveryOptions.js";
 export function renderPaymentSummary() {
   let totalOrderPrice = 0;
   let totalShippingFee = 0;
+  let itemsQuantity = 0;
 
   cart.forEach((cartItems) => {
+    // accumulate cart quantity
+    itemsQuantity += cartItems.quantity;
+
     // loop to get product
     const productId = cartItems.id;
     
@@ -35,7 +39,7 @@ export function renderPaymentSummary() {
       </div>
 
       <div class="payment-summary-row">
-        <div>Items (3):</div>
+        <div>Items (${itemsQuantity}):</div>
         <div class="payment-summary-money">
           $${(Math.round(totalOrderPrice) / 100).toFixed(2)}
         </div>

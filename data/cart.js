@@ -69,7 +69,7 @@ export function removeCartItem(productID) {
 
 
 // calculates cart quantity
-function calculateCartQuantity() {
+export function calculateCartQuantity() {
   let checkoutQuantity = 0;
   cart.forEach((cartItem) => {
     checkoutQuantity += cartItem.quantity;

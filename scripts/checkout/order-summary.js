@@ -2,6 +2,8 @@ import { cart, removeCartItem, updateQuantity, updateDeliveryOption } from '../.
 import { getProduct } from '../../data/products.js';
 import { deliveryOptions, getDeliveryOption } from '../../data/deliveryOptions.js';
 import { changeCheckoutQuantity } from '../../data/cart.js';
+import { renderPaymentSummary } from "./payment-summary.js"
+
 
 // library to set delivery schedule on current date
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js'; 
@@ -131,6 +133,8 @@ export function renderOrderSummary() {
 
         // rempve the element
         document.querySelector(`.js-cart-item-container-${productID}`).remove();
+
+        renderPaymentSummary();
       });
     });
 
@@ -158,6 +162,7 @@ export function renderOrderSummary() {
 
         // rerender the page
         renderOrderSummary();
+        renderPaymentSummary();
       });
     });
 }
