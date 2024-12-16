@@ -15,3 +15,18 @@ export const deliveryOptions = [
     shippingFee: 999
   }
 ];
+
+
+export function getDeliveryOption(deliveryOptionID) {
+  let deliveryOption;
+
+  // loop to extract matching delivery option
+  deliveryOptions.forEach((option) => {
+    if(option.id === deliveryOptionID) {
+      deliveryOption = option;
+    }
+  });
+
+  // return delivery option and the default delivery option for 0 shipping fee
+  return deliveryOption || deliveryOptions[0];
+}

@@ -1,6 +1,6 @@
 import { cart, removeCartItem, updateQuantity, updateDeliveryOption } from '../../data/cart.js';
-import { products } from '../../data/products.js';
-import { deliveryOptions } from '../../data/deliveryOptions.js';
+import { getProduct } from '../../data/products.js';
+import { deliveryOptions, getDeliveryOption } from '../../data/deliveryOptions.js';
 import { changeCheckoutQuantity } from '../../data/cart.js';
 
 // library to set delivery schedule on current date
@@ -11,25 +11,15 @@ export function renderOrderSummary() {
   let orderSummary = '';
   cart.forEach((cartItems) => {
 
-    // loop to products array to find matching products by id
-    let matchingProduct;
-    products.forEach((prod) => {  
-      if(cartItems.id === prod.id) {
-        matchingProduct = prod;
-      }
-    });
+    // get product id
+    const productId = cartItems.id;
+    
+    const matchingProduct = getProduct(productId);
 
     // extracting delivery date that matched to the selected delivery option
     const deliveryOptionID = cartItems.deliveryOptionID;
 
-    let deliveryOption;
-
-    // loop to extract matching delivery option
-    deliveryOptions.forEach((option) => {
-      if(option.id === deliveryOptionID) {
-        deliveryOption = option;
-      }
-    });
+    const deliveryOption = getDeliveryOption(deliveryOptionID);
 
     const deliveryDate = dayjs()
         .add(deliveryOption.deliveryDays,'days')
