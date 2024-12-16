@@ -3,6 +3,7 @@ import { getProduct } from '../../data/products.js';
 import { deliveryOptions, getDeliveryOption } from '../../data/deliveryOptions.js';
 import { changeCheckoutQuantity } from '../../data/cart.js';
 import { renderPaymentSummary } from "./payment-summary.js"
+import { formatCurrency } from '../utils/money.js';
 
 
 // library to set delivery schedule on current date
@@ -45,7 +46,7 @@ export function renderOrderSummary() {
                 ${matchingProduct.name}
               </div>
               <div class="product-price">
-                $${(matchingProduct.priceCents / 100).toFixed(2)}
+                $${formatCurrency(matchingProduct.priceCents)}
               </div>
               <div class="product-quantity">
                 <span>
