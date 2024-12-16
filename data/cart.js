@@ -134,16 +134,16 @@ function saveNewCartQuantity(productID, inputField) {
 
 
 // updating delivery option id
-// export function updateDeliveryOption(productId, options) {
-//   let matchingItem;
+export function updateDeliveryOption(productId, deliveryOptionId) {
+  let matchingItem;
 
-//   cart.forEach((cartItems) => {
-//     if(productId === cartItems.id) {
-//       matchingItem = cartItems;
-//     }
-//   });
+  cart.forEach((cartItems) => {
+    if(productId === cartItems.id) {
+      matchingItem = cartItems;
+    }
+  });
 
-//   matchingItem.deliveryOptionID = options;
+  matchingItem.deliveryOptionID = deliveryOptionId;
 
-//   saveToStorage();
-// }
+  saveToStorage();
+}
