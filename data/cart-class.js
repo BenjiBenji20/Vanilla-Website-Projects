@@ -178,8 +178,3 @@ const cart = new Cart('cart-class');
 //cart.#localStorageKey = '321' // error, private property cannot be access outside of its class
 
 const businesCart = new Cart('businessCart-class');
-
-console.log(cart);
-console.log(businesCart);
-
-console.log(cart instanceof Cart)
