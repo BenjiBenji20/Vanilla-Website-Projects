@@ -67,7 +67,8 @@ class Clothing extends Product {
 export let products = [];
 
 export function fetchProducts() {
-  const promise = fetch('https://supersimplebackend.dev/products')
+  try {
+    const promise = fetch('https://supersimplebackend.dev/products')
     .then((res) => {
       return res.json();
     }).then((productsData) => {
@@ -85,11 +86,15 @@ export function fetchProducts() {
       console.log('fetch products');
     })
   
-  return promise;
+    return promise;
+  } catch (error) {
+    console.error('Error fetching products', error);
+  }
 }
 
 
 export function loadProducts(fun) {
+ try {
   const xhr = new XMLHttpRequest();
 
   // add event to await the asynchronouse fetch
@@ -113,6 +118,9 @@ export function loadProducts(fun) {
 
   xhr.open('GET', 'https://supersimplebackend.dev/products');
   xhr.send();
+ } catch (error) {
+  console.error('Error fetching products', error);
+ }
 }
 
 /*
