@@ -1,9 +1,12 @@
 // import variables by modules
 import { cart, addToCart, cartMessage, calculateCartQuantity } from "../data/cart.js";
-import { products } from "../data/products.js";
+import { products, loadProducts } from "../data/products.js";
 
+// pass the fucntion to rennder i nthe backend
+loadProducts(renderProductsGrid);
 
-let productsHTML = '';
+function renderProductsGrid() {
+  let productsHTML = '';
 // Loop through the array to render elements
 products.forEach((product) => {
   // accumalte 
@@ -104,3 +107,4 @@ document.querySelectorAll('.js-add-to-cart-button')
       cartMessage(productID);
     });
   });
+}
