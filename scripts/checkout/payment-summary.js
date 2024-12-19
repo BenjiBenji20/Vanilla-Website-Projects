@@ -2,6 +2,7 @@ import { cart } from "../../data/cart.js";
 import { getProduct } from "../../data/products.js";
 import { getDeliveryOption } from "../../data/deliveryOptions.js";
 import { formatCurrency } from "../utils/money.js";
+import { addOrders } from "../../data/orders.js";
 
 export function renderPaymentSummary() {
   let totalOrderPrice = 0;
@@ -74,10 +75,43 @@ export function renderPaymentSummary() {
         </div>
       </div>
 
-      <button class="place-order-button button-primary">
+      <button class="place-order-button button-primary
+        js-place-order-button">
         Place your order
       </button>
     `
 
     document.querySelector('.payment-summary').innerHTML = paymentSummaryHTML;
+
+    document.querySelector('.js-place-order-button')
+      .addEventListener('click', async () => {
+        try {
+          // Transform the cart to use 'productId' instead of 'id'
+          const transformedCart = cart.map(item => ({
+            productId: item.id, // Rename 'id' to 'productId'
+            quantity: item.quantity,
+            deliveryOptionID: item.deliveryOptionID
+          }));
+
+          const response = await fetch('https://supersimplebackend.dev/orders', {
+              method: 'POST',
+              headers: {
+                'Content-Type' : 'application/json'
+              },
+              body: JSON.stringify({
+                cart: transformedCart
+              }) 
+            });
+          
+          const order = await response.json();
+
+          // add order to the array
+          addOrders(order);
+        } catch (error) {
+          console.error('Error fetching products', error);
+        }
+
+        // redirect the user
+         window.location.href = 'orders.html';
+      });
 }
