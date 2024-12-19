@@ -14,7 +14,7 @@ export function getProduct(productId) {
   return matchingProduct;
 }
 
-
+// parent class for general product details
 class Product {
   id;
   image;
@@ -37,7 +37,32 @@ class Product {
   getPrice() {
     return `$${formatCurrency(this.priceCents)}`;
   }
+
+  // return blank
+  getChartImageHTML() {
+    return ``;
+  }
 }
+
+//  class for clothing inherited product clas's properties
+class Clothing extends Product {
+  sizeChartLink;
+
+  constructor(productDetails) {
+    super(productDetails); // to inherit parent class's constructor
+
+    this.sizeChartLink = productDetails.sizeChartLink;
+  }
+
+  getChartImageHTML() {
+    return `
+        <a href="${this.sizeChartLink}" target="_blank">
+          Size Chart
+        </a>
+      `;
+  }
+}
+
 
 
 export const products = [
@@ -697,12 +722,15 @@ export const products = [
       "hoodies",
       "apparel",
       "mens"
-    ]
+    ],
+    type: "clothing",
+    sizeChartLink: "images/clothing-size-chart.png"
   }
 ].map((productDetails) => { // create new array using map 
-  return new Product(productDetails); // the array now became array of class instead of objects
+  // the array now became array of class instead of objects
+  if(productDetails.type === 'clothing') {
+    return new Clothing(productDetails);
+  }
+
+  return new Product(productDetails); 
 });
-
-
-
-

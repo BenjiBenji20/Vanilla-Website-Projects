@@ -43,7 +43,7 @@ products.forEach((product) => {
         </select>
       </div>
 
-      
+      ${product.getChartImageHTML()}      
 
       <div class="product-spacer"></div>
 
