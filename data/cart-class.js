@@ -4,15 +4,15 @@
 class Cart {
   // undefined initially
   cartItems;
-  localStorageKey;  
+  #localStorageKey;  // private property. Can only be use inside the class
 
   // creating class constructor
   constructor(localStorageKey) {
-    this.localStorageKey = localStorageKey;
+    this.#localStorageKey = localStorageKey;
   }
 
 
-  cartItems = JSON.parse(localStorage.getItem(this.localStorageKey)) || [
+  cartItems = JSON.parse(localStorage.getItem(this.#localStorageKey)) || [
     {
       id: 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6',
       quantity: 2,
@@ -27,7 +27,7 @@ class Cart {
 
   // saving every cart updates to the local storage
   saveToStorage() {
-    localStorage.setItem(this.localStorageKey, JSON.stringify(this.cartItems));
+    localStorage.setItem(this.#localStorageKey, JSON.stringify(this.cartItems));
   }
 
 
@@ -175,6 +175,7 @@ class Cart {
 
 // declaring an instance of a class
 const cart = new Cart('cart-class');
+//cart.#localStorageKey = '321' // error, private property cannot be access outside of its class
 
 const businesCart = new Cart('businessCart-class');
 
