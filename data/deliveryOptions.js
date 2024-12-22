@@ -16,6 +16,17 @@ export const deliveryOptions = [
   }
 ];
 
+// export function getDeliveryDaysById(deliveryOptionID) {
+//   let deliveryDays;
+
+//   // loop to extract matching delivery option
+//   deliveryOptions.forEach((option) => {
+//     if(option.id === deliveryOptionID) {
+
+//     }
+//   })
+// }
+
 
 export function getDeliveryOption(deliveryOptionID) {
   let deliveryOption;

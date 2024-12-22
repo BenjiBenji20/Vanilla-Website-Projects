@@ -1,11 +1,11 @@
 export let cart = JSON.parse(localStorage.getItem('cart')) || [
   {
-    id: 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6',
+    productId: 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6',
     quantity: 2,
     deliveryOptionID: '1'
   },
   {
-    id: '15b6fc6f-327a-4ec4-896f-486349e85a3d',
+    productId: '15b6fc6f-327a-4ec4-896f-486349e85a3d',
     quantity: 1,
     deliveryOptionID: '2'
   }
@@ -23,7 +23,7 @@ export function addToCart(productID) {
   const selectedQuantity = Number(selector.value);
 
   // Check if the product is already in the cart
-  let productInCart = cart.find((item) => item.id === productID);
+  let productInCart = cart.find((item) => item.productId === productID);
 
   // push the product obj to the cart array
   // cart array was loaded from other js file data/cart.js
@@ -33,7 +33,7 @@ export function addToCart(productID) {
   else {
     // Add the new product to the cart
     cart.push({
-      id: productID,
+      productId: productID,
       quantity: selectedQuantity, 
       deliveryOptionID: '1'
     });
@@ -59,7 +59,7 @@ export function removeCartItem(productID) {
 
   cart.forEach((cartItems) => {
     // find item that does not match with the delete product id
-    if(cartItems.id !== productID) {
+    if(cartItems.productId !== productID) {
       newCartArr.push(cartItems);
     }
   });
@@ -125,7 +125,7 @@ function saveNewCartQuantity(productID, inputField) {
 
   // save updated quantity to the array
   cart.forEach((cartItem) => {
-    if(cartItem.id === productID) {
+    if(cartItem.productId === productID) {
       cartItem.quantity = newQuantity;
     }
   })
@@ -146,7 +146,7 @@ export function updateDeliveryOption(productId, deliveryOptionId) {
   let matchingItem;
 
   cart.forEach((cartItems) => {
-    if(productId === cartItems.id) {
+    if(productId === cartItems.productId) {
       matchingItem = cartItems;
     }
   });

@@ -14,7 +14,7 @@ export function renderPaymentSummary() {
     itemsQuantity += cartItems.quantity;
 
     // loop to get product
-    const productId = cartItems.id;
+    const productId = cartItems.productId;
     
     const product = getProduct(productId);
 
